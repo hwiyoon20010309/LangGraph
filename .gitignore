@@ -1,5 +1,6 @@
 
 cat > .gitignore << 'EOF'
+@"
 # 의존성
 node_modules/
 npm-debug.log*
@@ -7,6 +8,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # 환경 변수
+**/.env
+*.env
 .env
 .env.local
 .env.development.local
@@ -43,4 +46,4 @@ coverage/
 # 기타
 *.zip
 *.tar.gz
-EOF.env
+"@ | Out-File -FilePath .gitignore -Encoding utf8 -NoNewline
