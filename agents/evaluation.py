@@ -46,7 +46,7 @@ class InvestmentState(TypedDict):
     
     # 종합 판단 결과
     total_score: int
-    investment_decision: Literal["투자", "보류", "미결정"]
+    investment_decision: Literal["투자", "보류"]
     decision_reasoning: str
     
     # 최종 보고서
