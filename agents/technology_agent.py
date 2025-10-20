@@ -8,6 +8,8 @@ from .base import AgentState, EVALUATION_CRITERIA, llm, extract_score, get_web_c
 
 def technology_agent(state: AgentState) -> AgentState:
     """Agent 1: 기술력 분석"""
+    print("\n🔧 [Agent 1] 기술력 분석 시작...")
+    
     startup_name = state["startup_name"]
     checklist = EVALUATION_CRITERIA["technology"]
     context = get_web_context(startup_name, "교육 기술 혁신")
@@ -38,8 +40,10 @@ def technology_agent(state: AgentState) -> AgentState:
     analysis = response.content
     score = extract_score(analysis)
     
-    state["technology_score"] = score
-    state["technology_analysis_evidence"] = analysis
-    
     print(f"✅ [Agent 1] 완료 - 기술력 점수: {score}")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "technology_score": score,
+        "technology_analysis_evidence": analysis
+    }

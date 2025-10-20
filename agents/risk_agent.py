@@ -40,7 +40,9 @@ def risk_agent(state: AgentState) -> AgentState:
     analysis = response.content
     score = extract_score(analysis)
     
-    state["risk_score"] = score
-    
     print(f"✅ [Agent 6] 완료 - 리스크 점수: {score} (높을수록 안전)")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "risk_score": score
+    }

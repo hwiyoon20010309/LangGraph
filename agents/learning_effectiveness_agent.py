@@ -40,8 +40,10 @@ def learning_effectiveness_agent(state: AgentState) -> AgentState:
     analysis = response.content
     score = extract_score(analysis)
     
-    state["learning_effectiveness_score"] = score
-    state["learning_effectiveness_analysis_evidence"] = analysis
-    
     print(f"✅ [Agent 2] 완료 - 학습효과 점수: {score}")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "learning_effectiveness_score": score,
+        "learning_effectiveness_analysis_evidence": analysis
+    }

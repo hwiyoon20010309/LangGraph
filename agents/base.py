@@ -5,11 +5,12 @@ agents/base.py
 import os
 import re
 import requests
-from typing import TypedDict, Literal
+from typing import TypedDict, Literal, Annotated
+import operator
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
-# .env 파일 로드
+# .env 파일 로드 (override=True로 강제 리로드)
 load_dotenv(override=True)
 
 
@@ -17,24 +18,41 @@ load_dotenv(override=True)
 # State 스키마 정의
 # ========================================
 
+def keep_first_value(current, new):
+    """
+    첫 번째 값을 유지하는 reducer
+    병렬 실행 시 여러 Agent가 같은 값을 설정해도 충돌 없음
+    """
+    if current is None or current == "" or current == 0:
+        return new
+    return current
+
+
 class AgentState(TypedDict, total=False):
-    """투자 평가 State - 모든 에이전트가 공유"""
-    startup_name: str  # 스타트업
-    learning_effectiveness_score: int
-    technology_score: int
-    growth_potential_score: int
-    market_score: int
-    competition_score: int
-    risk_score: int
-    final_judge: Literal["투자", "보류"]
-    pdf_path: str  # 보고서 산출 PDF 파일 경로
-    # 분석 근거
-    learning_effectiveness_analysis_evidence: str
-    technology_analysis_evidence: str
-    growth_potential_analysis_evidence: str
-    market_analysis_evidence: str
-    competition_analysis_evidence: str
-    report: str
+    """투자 평가 State - 모든 에이전트가 공유 (병렬 처리 지원)"""
+    
+    # 읽기 전용 필드 - 병렬 업데이트 허용
+    startup_name: Annotated[str, keep_first_value]
+    
+    # 점수 필드 - 병렬 업데이트 허용
+    learning_effectiveness_score: Annotated[int, keep_first_value]
+    technology_score: Annotated[int, keep_first_value]
+    growth_potential_score: Annotated[int, keep_first_value]
+    market_score: Annotated[int, keep_first_value]
+    competition_score: Annotated[int, keep_first_value]
+    risk_score: Annotated[int, keep_first_value]
+    
+    # 판단 및 경로
+    final_judge: Annotated[Literal["투자", "보류"], keep_first_value]
+    pdf_path: Annotated[str, keep_first_value]
+    
+    # 분석 근거 - 병렬 업데이트 허용
+    learning_effectiveness_analysis_evidence: Annotated[str, keep_first_value]
+    technology_analysis_evidence: Annotated[str, keep_first_value]
+    growth_potential_analysis_evidence: Annotated[str, keep_first_value]
+    market_analysis_evidence: Annotated[str, keep_first_value]
+    competition_analysis_evidence: Annotated[str, keep_first_value]
+    report: Annotated[str, keep_first_value]
 
 
 # ========================================

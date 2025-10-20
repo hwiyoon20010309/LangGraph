@@ -80,7 +80,10 @@ def report_generation_agent(state: AgentState) -> AgentState:
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(state["report"])
     
-    state["pdf_path"] = filepath
-    
     print(f"✅ [Agent 8] 완료 - 보고서 저장: {filepath}")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "report": response.content,
+        "pdf_path": filepath
+    }
