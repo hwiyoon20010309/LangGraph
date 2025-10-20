@@ -3,7 +3,10 @@ agents/competition_agent.py
 경쟁력 분석 Agent
 """
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_community.tools.tavily_search import TavilySearchResults
+try:
+    from langchain_tavily import TavilySearch
+except ImportError:
+    from langchain_community.tools.tavily_search import TavilySearchResults as TavilySearch
 from .base import AgentState, EVALUATION_CRITERIA, llm, extract_score
 
 
@@ -15,11 +18,17 @@ def competition_agent(state: AgentState) -> AgentState:
     checklist = EVALUATION_CRITERIA["competition"]
     
     try:
-        search = TavilySearchResults(k=15)
+        search = TavilySearch(max_results=15)
         results = search.invoke(f"{startup_name} 경쟁사 비교")
-        context = "\n".join([f"- {r['title']} ({r['url']})" for r in results])
-    except:
-        context = "검색 실패"
+        # TavilySearch는 문자열을 직접 반환하거나 리스트를 반환할 수 있음
+        if isinstance(results, str):
+            context = results
+        elif isinstance(results, list):
+            context = "\n".join([f"- {r.get('title', r.get('content', str(r)))}" for r in results])
+        else:
+            context = str(results)
+    except Exception as e:
+        context = f"검색 실패: {str(e)}"
     
     prompt = ChatPromptTemplate.from_template("""
 교육 스타트업 '{startup_name}'의 경쟁력을 평가하세요.
