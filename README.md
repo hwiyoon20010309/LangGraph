@@ -24,18 +24,18 @@
 
 ## Agents
  
-- Agent A: 웹 크롤링을 통해 교육 AI 스타트업들의 목록을 긁어온다.
-- Agent B: 목적, 성장 속도, 아이디어, 불확실성, 자금 조달, 최종 목표를 기준으로 스타트업인지 판단한다.
+- Web_Crawling_Agent: 웹 크롤링을 통해 교육 AI 스타트업들의 목록을 긁어온다.
+- Select_Agent: 목적, 성장 속도, 아이디어, 불확실성, 자금 조달, 최종 목표를 기준으로 스타트업인지 판단한다.
 -------------------------------------------------
-- Agent C: 선정된 스타트업의 기술력을 분석한다.
-- Agnet D: 선정된 스타트업의 교육 학습 성과를 분석한다.
-- Agent E: 선정된 스타트업의 시장성을 분석한다.
-- Agent F: 선정된 스타트업의 경쟁사와 비교한다.
-- Agent G: 선정된 스타트업의 성장 가능성을 분석한다.
-- Agent H: 선정된 스타트업의 리스크를 평가한다.
+- Tech_Anal_Agent: 선정된 스타트업의 기술력을 분석한다.
+- Learning_Effect_Agnet: 선정된 스타트업의 교육 학습 성과를 분석한다.
+- Market_Agent: 선정된 스타트업의 시장성을 분석한다.
+- Competition_Agent: 선정된 스타트업의 경쟁사와 비교한다.
+- Growth_Potential_Agent: 선정된 스타트업의 성장 가능성을 분석한다.
+- Risk_Assesment_Agent: 선정된 스타트업의 리스크를 평가한다.
 --------------------------------------------------
-- Agent I: 총합 점수를 통해 보류할지 투자할지 판단한다.
-- Agent J: 보류 결정이면 다시 Agnet B로, 투자 결정이면 해당 스타트업의 분석을 보고서로 작성한다.
+- Judgment_Agent: 총합 점수를 통해 보류할지 투자할지 판단한다.
+- Repot_Agent: 보류 결정이면 다시 Agnet B로, 투자 결정이면 해당 스타트업의 분석을 보고서로 작성한다.
 
 ## Architecture
 ```mermaid
@@ -103,4 +103,5 @@ flowchart TD
 - 심경호 : Prompt Engineering, Architecture Design
 - 최휘윤 : Filtering/Selection Agent
 - 송재령 : Retrieval agent
+
 
