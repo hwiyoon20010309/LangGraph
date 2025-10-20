@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squirrel AI 투자 심사 보고서</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #3498db;
+        }
+        
+        h2 {
+            color: #34495e;
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        h3 {
+            color: #7f8c8d;
+            font-size: 18px;
+            font-weight: 500;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        strong {
+            color: #2980b9;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .header h1 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background: #2980b9;
+        }
+        
+        @media print {
+            .print-button {
+                display: none;
+            }
+            
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ PDF로 저장</button>
+    
+    <div class="header">
+        <h1>📊 투자 심사 보고서</h1>
+        <p>Squirrel AI | 2025년 10월 20일</p>
+    </div>
+    
+    <h2>SWOT 분석</h2>
+<h3>Strengths (강점)</h3>
+<ol>
+<li><strong>AI 기반의 개인 맞춤형 학습</strong>: Squirrel AI는 AI 기술을 활용하여 학습자의 수준과 필요에 맞춘 개인화된 학습 경로를 제공, 이는 학습 효과성을 높이는 데 기여합니다.</li>
+<li><strong>시장 선도 기업</strong>: Squirrel AI는 대규모 AI 기반 적응형 교육 솔루션을 제공한 최초의 기업 중 하나로, 시장에서의 선점 효과를 누리고 있습니다.</li>
+<li><strong>확장 가능성</strong>: 다양한 교육 콘텐츠와 연계하여 시스템을 확장할 수 있는 가능성이 높으며, 교육 기관 및 기술 기업과의 파트너십을 통해 시너지를 낼 수 있는 기회가 많습니다.</li>
+</ol>
+<h3>Weaknesses (약점)</h3>
+<ol>
+<li><strong>기술 문서화 부족</strong>: 기술 문서화에 대한 정보가 부족하여, 기술적 이해도가 낮은 사용자나 파트너에게는 접근성이 떨어질 수 있습니다.</li>
+<li><strong>글로벌 진출 전략의 불확실성</strong>: 현재 글로벌 시장 진출에 대한 구체적인 전략이 부족하여, 해외 시장에서의 경쟁력이 약화될 수 있습니다.</li>
+<li><strong>고객 획득 비용(CAC) 데이터 부족</strong>: 고객 획득 비용에 대한 구체적인 데이터가 부족하여, 마케팅 전략의 효율성을 평가하기 어려운 상황입니다.</li>
+</ol>
+<h3>Opportunities (기회)</h3>
+<ol>
+<li><strong>AI 교육 시장의 성장</strong>: AI 교육 시장은 2032년까지 847억 3천만 달러에 도달할 것으로 예상되며, 이는 Squirrel AI의 성장 기회를 제공합니다.</li>
+<li><strong>온라인 교육 수요 증가</strong>: COVID-19 이후 온라인 교육의 수요가 급증하고 있으며, Squirrel AI는 이러한 트렌드에 부합하는 솔루션을 제공하고 있습니다.</li>
+<li><strong>파트너십 확대 가능성</strong>: 교육 기관 및 기술 기업과의 파트너십을 통해 시장에서의 입지를 강화할 수 있는 기회가 많습니다.</li>
+</ol>
+<h3>Threats (위협)</h3>
+<ol>
+<li><strong>경쟁 심화</strong>: AI 기반 교육 솔루션을 제공하는 경쟁사가 증가하고 있으며, 이는 시장 점유율에 부정적인 영향을 미칠 수 있습니다.</li>
+<li><strong>기술 발전 속도</strong>: AI 기술의 발전 속도가 빠르기 때문에, 지속적으로 기술을 발전시키지 않으면 경쟁에서 뒤처질 위험이 있습니다.</li>
+<li><strong>규제 및 정책 변화</strong>: 교육 및 기술 관련 규제 및 정책 변화가 Squirrel AI의 운영에 영향을 미칠 수 있습니다.</li>
+</ol>
+<h2>투자 권고사항</h2>
+<ul>
+<li><strong>보류</strong>: 현재 Squirrel AI는 기술력, 학습 효과성, 시장성, 경쟁력, 성장 가능성 등에서 긍정적인 평가를 받고 있으나, 기술 문서화 부족, 글로벌 진출 전략의 불확실성, 고객 획득 비용 데이터 부족 등의 약점이 존재합니다. 이러한 약점을 보완하기 위한 구체적인 계획이 마련될 때까지 투자를 보류하는 것이 바람직합니다.</li>
+<li><strong>추가 정보 요청</strong>: Squirrel AI의 기술 문서화 상태, 글로벌 진출 전략, 고객 획득 비용(CAC) 데이터에 대한 추가 정보를 요청하여, 향후 투자 결정을 내리는 데 필요한 자료를 확보하는 것이 필요합니다.</li>
+<li><strong>시장 동향 모니터링</strong>: AI 교육 시장의 동향을 지속적으로 모니터링하고, 경쟁사의 움직임 및 기술 발전 상황을 주의 깊게 살펴보아야 합니다.</li>
+</ul>
+    
+    <div class="footer">
+        <p>본 보고서는 AI 기반 자동 분석 시스템에 의해 생성되었습니다.</p>
+        <p>© 2025 Investment Analysis System. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 11px;">
+            💡 브라우저에서 Ctrl+P (또는 우측 상단 버튼)를 눌러 PDF로 저장할 수 있습니다.
+        </p>
+    </div>
+</body>
+</html>
