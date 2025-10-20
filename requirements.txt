@@ -1,0 +1,22 @@
+# Core AI + Workflow
+langgraph==0.0.69
+langchain==0.2.15
+langchain-openai==0.1.23
+langchain-community==0.2.15
+
+# Vector Store (RAG)
+faiss-cpu==1.8.0.post1
+tiktoken==0.7.0
+
+# Web crawling & parsing
+requests==2.32.3
+beautifulsoup4==4.12.3
+
+# PDF report generation
+reportlab==4.2.2
+
+# Environment variable support
+python-dotenv==1.0.1
+
+# Optional (for debugging/logging)
+rich==13.8.0
