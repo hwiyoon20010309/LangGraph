@@ -38,6 +38,7 @@
 - Agent J: 보류 결정이면 다시 Agnet B로, 투자 결정이면 해당 스타트업의 분석을 보고서로 작성한다.
 
 ## Architecture
+```mermaid
 flowchart TD
     Start([시작])
     
