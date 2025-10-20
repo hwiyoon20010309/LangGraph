@@ -1,0 +1,62 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+*.log
+
+# === Virtual Environment ===
+venv/
+.env/
+.venv/
+env/
+ENV/
+env.bak/
+
+# === Environment Config ===
+.env
+.env.*
+*.env
+.envrc
+.env.local
+.env.development
+.env.production
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# === OS-specific ===
+*.bak
+*.tmp
+
+# === Jupyter / Notebook ===
+.ipynb_checkpoints/
+
+# === LangGraph / LangChain Cache ===
+.vectorstores/
+langgraph.sqlite
+*.sqlite
+*.db
+
+# === Reports / Outputs ===
+*.pdf
+*.csv
+*.json
+*.xlsx
+*.zip
+
+# === Misc ===
+logs/
+tmp/
