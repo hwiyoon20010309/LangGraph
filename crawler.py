@@ -2,9 +2,13 @@ import os
 import re
 import requests
 import pandas as pd
-from typing import List, Set, Sequence
+from typing import List, Set
 from dotenv import load_dotenv
 from openai import OpenAI
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.docstore.document import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # === ① 환경 변수 로드 ===
 load_dotenv()
@@ -28,9 +32,7 @@ QUERIES = [
 ]
 
 # === ③ 정규식 + 필터 설정 ===
-NAME_PATTERN = re.compile(
-    r"\b([A-Z][A-Za-z0-9&'\-]*(?:\s+[A-Z][A-Za-z0-9&'\-]*){0,2})\b"
-)
+NAME_PATTERN = re.compile(r"\b([A-Z][A-Za-z0-9&'\-]*(?:\s+[A-Z][A-Za-z0-9&'\-]*){0,2})\b")
 
 STOPWORDS = {
     "AI", "Labs", "Learning", "Education", "EdTech", "Systems", "Company", "Group",
@@ -40,7 +42,7 @@ STOPWORDS = {
 }
 
 # === ④ Tavily 검색 함수 ===
-def tavily_search(query: str, max_results: int = 40) -> dict:
+def tavily_search(query: str, max_results: int = 30) -> dict:
     headers = {"Authorization": f"Bearer {TAVILY_API_KEY}", "Content-Type": "application/json"}
     payload = {
         "query": query,
@@ -95,24 +97,52 @@ def ai_filter_startups(candidates: List[str]) -> List[str]:
         print("⚠️ AI 필터 실패:", e)
         return candidates
 
-# === ⑦ 전체 검색 실행 ===
+# === ⑦ FAISS 벡터 저장용 함수 ===
+def build_faiss_index(all_texts: List[str], output_path: str = "faiss_index"):
+    print(f"📦 FAISS 인덱스 생성 중... ({len(all_texts)}개 문서)")
+    docs = [Document(page_content=txt) for txt in all_texts if txt.strip()]
+    
+    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    chunks = splitter.split_documents(docs)
+
+    embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+    vectorstore = FAISS.from_documents(chunks, embeddings)
+    vectorstore.save_local(output_path)
+    print(f"✅ FAISS 인덱스 저장 완료 → {output_path}/")
+
+# === ⑧ 전체 검색 실행 ===
 def aggregate_ai_startups() -> List[str]:
     all_candidates: Set[str] = set()
+    all_texts: List[str] = []  # 🔹 RAG용 텍스트 저장
+    
     for q in QUERIES:
         print(f"🔍 Searching: {q}")
         data = tavily_search(q)
         if not data:
             continue
-        # Tavily 요약(answer) + 기사제목/본문에서 추출
+        
+        # 문서 내용 저장 (RAG에 사용)
+        if "answer" in data:
+            all_texts.append(data["answer"])
+        for r in data.get("results", []):
+            all_texts.append(r.get("title", ""))
+            all_texts.append(r.get("content", ""))
+
+        # 기업명 추출
         all_candidates.update(extract_candidate_names(data.get("answer", "")))
         for r in data.get("results", []):
             all_candidates.update(extract_candidate_names(r.get("title", ""), r.get("content", "")))
 
     print(f"🧩 1차 추출된 후보 수: {len(all_candidates)}")
+    
     filtered = ai_filter_startups(sorted(all_candidates))
+    
+    # 🔹 RAG용 FAISS 인덱스 구축
+    build_faiss_index(all_texts)
+    
     return sorted(set(filtered))
 
-# === ⑧ 실행 ===
+# === ⑨ 실행 ===
 if __name__ == "__main__":
     startups = aggregate_ai_startups()
     if startups:
