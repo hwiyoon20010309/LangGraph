@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
 # .env 파일 로드
-load_dotenv()
+load_dotenv(override=True)
 
 
 # ========================================

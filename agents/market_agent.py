@@ -8,7 +8,10 @@ from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-from langchain_community.tools.tavily_search import TavilySearchResults
+try:
+    from langchain_tavily import TavilySearch
+except ImportError:
+    from langchain_community.tools.tavily_search import TavilySearchResults as TavilySearch
 from .base import AgentState, EVALUATION_CRITERIA, llm, extract_score
 
 
@@ -35,11 +38,17 @@ def market_agent(state: AgentState) -> AgentState:
     
     # Web Search
     try:
-        search = TavilySearchResults(k=10)
+        search = TavilySearch(max_results=10)
         results = search.invoke(f"{startup_name} 교육 시장 규모")
-        web_context = "\n".join([f"- {r['title']} ({r['url']})" for r in results])
-    except:
-        web_context = "검색 실패"
+        # TavilySearch는 문자열을 직접 반환하거나 리스트를 반환할 수 있음
+        if isinstance(results, str):
+            web_context = results
+        elif isinstance(results, list):
+            web_context = "\n".join([f"- {r.get('title', r.get('content', str(r)))}" for r in results])
+        else:
+            web_context = str(results)
+    except Exception as e:
+        web_context = f"검색 실패: {str(e)}"
     
     combined = f"[PDF 자료]\n{rag_context}\n\n[웹 검색]\n{web_context}"
     

@@ -8,8 +8,6 @@ from .base import AgentState, EVALUATION_CRITERIA, llm, extract_score, get_web_c
 
 def technology_agent(state: AgentState) -> AgentState:
     """Agent 1: 기술력 분석"""
-    print("\n🔧 [Agent 1] 기술력 분석 시작...")
-    
     startup_name = state["startup_name"]
     checklist = EVALUATION_CRITERIA["technology"]
     context = get_web_context(startup_name, "교육 기술 혁신")

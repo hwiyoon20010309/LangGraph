@@ -1,0 +1,13 @@
+python-dotenv
+langchain
+langchain-openai
+langchain-community
+langchain-core
+langgraph
+langchain-chroma
+chromadb
+pymupdf
+tavily-python
+requests
+langchain-text-splitters
+langchain-tavily
