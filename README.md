@@ -83,6 +83,6 @@ flowchart TD
 ## Contributors 
 - 김지은 : Agent Design 
 - 심경호 : Prompt Engineering, PDF Parsing
-- 최휘윤 : Retrieval Agent
-- 송재령 :
+- 최휘윤 : Filtering/Selection Agent
+- 송재령 : Retrieval Agent
 
