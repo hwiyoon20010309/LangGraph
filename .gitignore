@@ -1,3 +1,16 @@
+# === Environment Config (API Keys, Secrets) ===
+.env
+.env.*
+*.env
+*.env.*
+.envrc
+.env.local
+.env.development
+.env.production
+.env.example
+.env.backup
+.env.template
+
 # === Python ===
 __pycache__/
 *.py[cod]
@@ -12,24 +25,16 @@ dist/
 pip-wheel-metadata/
 *.log
 
-# === Virtual Environment ===
+# === Virtual Environments ===
 venv/
-.env/
 .venv/
-env/
 ENV/
+env/
 env.bak/
+env_old/
+.venv*/
 
-# === Environment Config ===
-.env
-.env.*
-*.env
-.envrc
-.env.local
-.env.development
-.env.production
-
-# === IDE / Editor ===
+# === IDE / Editors ===
 .vscode/
 .idea/
 *.swp
@@ -37,26 +42,23 @@ env.bak/
 .DS_Store
 Thumbs.db
 
-# === OS-specific ===
-*.bak
-*.tmp
-
-# === Jupyter / Notebook ===
-.ipynb_checkpoints/
-
-# === LangGraph / LangChain Cache ===
+# === LangGraph / LangChain Artifacts ===
 .vectorstores/
 langgraph.sqlite
 *.sqlite
 *.db
-
-# === Reports / Outputs ===
-*.pdf
-*.csv
 *.json
+*.csv
+*.pdf
 *.xlsx
 *.zip
-
-# === Misc ===
+*.pkl
 logs/
 tmp/
+
+# === OS-specific ===
+*.bak
+*.tmp
+
+# === Jupyter Notebooks ===
+.ipynb_checkpoints/
