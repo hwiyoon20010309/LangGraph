@@ -15,4 +15,5 @@ exportlab
 tiktoken==0.7.0
 faiss-cpu==1.8.0.post1
 langchain-tavily
+markdown
 rich

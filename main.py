@@ -230,7 +230,7 @@ if __name__ == "__main__":
         sys.exit(0)
     
     # 일반 실행 모드
-    startup = input("분석할 교육 스타트업 이름: ").strip()
+    startup = input("분석할 교육 AI 스타트업 이름: ").strip()
     
     if not startup:
         print("❌ 스타트업 이름을 입력해주세요.")
