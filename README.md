@@ -70,6 +70,7 @@ flowchart TD
     style Hold fill:#ffebee
     style Report fill:#c8e6c9
     style Filtering fill:#f3e5f5
+```
 
 ## Directory Structure
 ├── data/                  # 스타트업 PDF 문서
