@@ -56,8 +56,10 @@ def competition_agent(state: AgentState) -> AgentState:
     analysis = response.content
     score = extract_score(analysis)
     
-    state["competition_score"] = score
-    state["competition_analysis_evidence"] = analysis
-    
     print(f"✅ [Agent 4] 완료 - 경쟁력 점수: {score}")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "competition_score": score,
+        "competition_analysis_evidence": analysis
+    }

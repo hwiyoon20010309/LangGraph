@@ -40,8 +40,10 @@ def growth_potential_agent(state: AgentState) -> AgentState:
     analysis = response.content
     score = extract_score(analysis)
     
-    state["growth_potential_score"] = score
-    state["growth_potential_analysis_evidence"] = analysis
-    
     print(f"✅ [Agent 5] 완료 - 성장가능성 점수: {score}")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "growth_potential_score": score,
+        "growth_potential_analysis_evidence": analysis
+    }

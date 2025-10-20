@@ -73,7 +73,9 @@ def comprehensive_judge_agent(state: AgentState) -> AgentState:
     decision_text = response.content.strip()
     decision = "투자" if "투자" in decision_text and "보류" not in decision_text else "보류"
     
-    state["final_judge"] = decision
-    
     print(f"✅ [Agent 7] 완료 - 최종 결정: {decision} (총점: {total_score})")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "final_judge": decision
+    }

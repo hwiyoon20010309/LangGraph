@@ -78,8 +78,10 @@ def market_agent(state: AgentState) -> AgentState:
     analysis = response.content
     score = extract_score(analysis)
     
-    state["market_score"] = score
-    state["market_analysis_evidence"] = analysis
-    
     print(f"✅ [Agent 3] 완료 - 시장성 점수: {score}")
-    return state
+    
+    # 자신의 필드만 반환
+    return {
+        "market_score": score,
+        "market_analysis_evidence": analysis
+    }
